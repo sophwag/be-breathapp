@@ -17,7 +17,7 @@ test_dict_bp = Blueprint("test_dict", __name__, url_prefix="/test_dict")
 test_audio_bp = Blueprint("test_audio", __name__, url_prefix="/test_audio")
 
 @test_dict_bp.route("", methods = ["GET"])
-def get_test_sound():
+def get_test_dict():
     request_body = request.get_json()
     test_sound = sound
     test_dict = {"key":"test value"}
