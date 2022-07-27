@@ -1,8 +1,10 @@
-from flask import Blueprint, request, jsonify, make_response, abort
+from flask import Flask, send_from_directory, Blueprint, request, jsonify, make_response, abort
 import requests
-import os
 from pydub import AudioSegment
 from pydub.playback import play
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 sound = AudioSegment.from_file("app/sample_sound.wav", format="wav")
 # play(sound)
@@ -24,8 +26,8 @@ def get_test_sound():
 
 @test_audio_bp.route("", methods = ["GET"])
 def get_test_audio():
-    request_body = request.get_json()
-    test_sound = sound
-    test_dict = {"key":"test song"}
-    
-    return jsonify(test_dict)
+    path = os.environ.get("TEST_SOUND_PATH")
+    try:
+        return send_from_directory(path, filename="sample_sound.wav", as_attachment=True)
+    except FileNotFoundError:
+        abort(404)
