@@ -6,8 +6,10 @@ from flask import Flask
 def create_app(test_config=None):
     app = Flask(__name__)
     # Register Blueprints here
-    from app.routes import test_sounds_bp
-    app.register_blueprint(test_sounds_bp)
+    from app.routes import test_dict_bp
+    app.register_blueprint(test_dict_bp)
+    from app.routes import test_audio_bp
+    app.register_blueprint(test_audio_bp)
     
     # not sure if I need this
     #CORS(app)

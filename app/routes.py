@@ -11,13 +11,21 @@ sound = AudioSegment.from_file("app/sample_sound.wav", format="wav")
 short = sound[:1000]
 # play(short)
 
-test_sounds_bp = Blueprint("test_sounds", __name__, url_prefix="/test_sounds")
+test_dict_bp = Blueprint("test_dict", __name__, url_prefix="/test_dict")
+test_audio_bp = Blueprint("test_audio", __name__, url_prefix="/test_audio")
 
-
-@test_sounds_bp.route("", methods = ["GET"])
+@test_dict_bp.route("", methods = ["GET"])
 def get_test_sound():
     request_body = request.get_json()
     test_sound = sound
     test_dict = {"key":"test value"}
+    
+    return jsonify(test_dict)
+
+@test_audio_bp.route("", methods = ["GET"])
+def get_test_audio():
+    request_body = request.get_json()
+    test_sound = sound
+    test_dict = {"key":"test song"}
     
     return jsonify(test_dict)
