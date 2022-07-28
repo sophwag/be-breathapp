@@ -13,6 +13,8 @@ test_audio_bp = Blueprint("test_audio", __name__, url_prefix="/test_audio")
 test_image_bp = Blueprint("test_image", __name__, url_prefix="/test_image")
 test_edited_sound_bp = Blueprint("test_edited_sound", __name__, url_prefix="/test_edited_sound")
 test_edited_long_sound_bp = Blueprint("test_edited_long_sound", __name__, url_prefix="/test_edited_long_sound")
+test_edited_medium_sound_bp = Blueprint("test_edited_medium_sound", __name__, url_prefix="/test_edited_medium_sound")
+
 
 #route that returns a dictionary
 @test_dict_bp.route("", methods = ["GET"])
@@ -62,5 +64,18 @@ def get_test_edited_long_sound():
     path = os.environ.get("TEST_SOUND_PATH")
     try:
         return send_from_directory(path, filename="new_long_audio.wav", as_attachment=True)
+    except FileNotFoundError:
+        abort(404, description ="File not found")
+
+#route that creates and returns a 10-minute audio file
+@test_edited_medium_sound_bp.route("", methods = ["GET"])
+def get_test_edited_medium_sound():
+    sound = AudioSegment.from_file("app/sample_sound.wav", format="wav")
+    long = sound * 75
+    long.export("app/new_medium_audio.wav", format="wav")
+    # time.sleep(5)
+    path = os.environ.get("TEST_SOUND_PATH")
+    try:
+        return send_from_directory(path, filename="new_medium_audio.wav", as_attachment=True)
     except FileNotFoundError:
         abort(404, description ="File not found")
