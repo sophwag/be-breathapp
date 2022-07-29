@@ -1,7 +1,7 @@
 from flask import Flask
 # not sure if I need to add these
-# import os
-# from flask_cors import CORS
+import os
+from flask_cors import CORS
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -20,5 +20,5 @@ def create_app(test_config=None):
     app.register_blueprint(test_edited_medium_sound_bp)
     
     # not sure if I need this
-    #CORS(app)
+    CORS(app)
     return app
