@@ -97,7 +97,7 @@ def speed_change(sound, speed=1.0):
 # route that creates custom audio
 @custom_audio_bp.route("", methods = ["GET"])
 def get_custom_audio():
-    request_body = request.get_json()
+    request_body = request.args
 
     #getting the root inhale and exhale sounds
     if request_body["sound"] == "test":
