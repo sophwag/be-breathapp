@@ -18,6 +18,8 @@ def create_app(test_config=None):
     app.register_blueprint(test_edited_long_sound_bp)
     from app.routes import test_edited_medium_sound_bp
     app.register_blueprint(test_edited_medium_sound_bp)
+    from app.routes import custom_audio_bp
+    app.register_blueprint(custom_audio_bp)
     
     # not sure if I need this
     CORS(app)
