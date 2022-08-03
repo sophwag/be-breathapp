@@ -108,10 +108,20 @@ def get_custom_audio():
         exhale = AudioSegment.from_file("app/synth_fall.wav", format="wav")
     
     #create the base pattern
-    stretched_inhale = speed_change(inhale,(inhale.duration_seconds/int(request_body["pattern"][0])))
-    stretched_inhale_pause = AudioSegment.silent(duration=(1000*int(request_body["pattern"][2])))
-    stretched_exhale = speed_change(exhale,(exhale.duration_seconds/int(request_body["pattern"][4])))
-    stretched_exhale_pause = AudioSegment.silent(duration=(1000*int(request_body["pattern"][6])))
+    breath_part_lengths = [int(l) for l in request_body["pattern"].split("-")]
+    if breath_part_lengths[0] == 0:
+        stretched_inhale = AudioSegment.silent(duration=0)
+    else:
+        stretched_inhale = speed_change(inhale,(inhale.duration_seconds/breath_part_lengths[0]))
+    
+    if breath_part_lengths[2] == 0:
+        stretched_exhale = AudioSegment.silent(duration=0)
+    else:
+        stretched_exhale = speed_change(exhale,(exhale.duration_seconds/breath_part_lengths[2]))
+
+    stretched_inhale_pause = AudioSegment.silent(duration=(1000*breath_part_lengths[1]))
+    stretched_exhale_pause = AudioSegment.silent(duration=(1000*breath_part_lengths[3]))
+    
     base_pattern = stretched_inhale + stretched_inhale_pause + stretched_exhale + stretched_exhale_pause
 
     #loop the base pattern
