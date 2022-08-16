@@ -1,6 +1,5 @@
 from flask import Flask, send_from_directory, Blueprint, request, jsonify, make_response, abort
 import requests
-import time
 from pydub import AudioSegment
 from pydub.playback import play
 from pydub.effects import speedup
@@ -12,7 +11,7 @@ load_dotenv()
 custom_audio_bp = Blueprint("custom_audio", __name__, url_prefix="/custom_audio")
 
 
-# from pydub creator https://stackoverflow.com/questions/43408833/how-to-increase-decrease-playback-speed-on-wav-file
+# Speed change function from pydub creator https://stackoverflow.com/questions/43408833/how-to-increase-decrease-playback-speed-on-wav-file
 def speed_change(sound, speed=1.0):
     # Manually override the frame_rate. This tells the computer how many
     # samples to play per second
