@@ -40,6 +40,15 @@ def get_custom_audio():
     elif request_body["sound"] == "airy":
         inhale = AudioSegment.from_file("app/airy_rise.wav", format="wav")
         exhale = AudioSegment.from_file("app/airy_fall.wav", format="wav")
+    elif request_body["sound"] == "silvia":
+        inhale = AudioSegment.from_file("app/rip_ferrari.wav", format="wav")
+        exhale = AudioSegment.from_file("app/rip_ferrari.wav", format="wav")
+    elif request_body["sound"] == "rain":
+        inhale = AudioSegment.from_file("app/rain_rise.wav", format="wav")
+        exhale = AudioSegment.from_file("app/rain_fall.wav", format="wav")
+    elif request_body["sound"] == "bowl":
+        inhale = AudioSegment.from_file("app/bowl_rise.wav", format="wav")
+        exhale = AudioSegment.from_file("app/bowl_fall.wav", format="wav")
 
     
     #create the base pattern
