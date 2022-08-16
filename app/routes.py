@@ -56,12 +56,12 @@ def get_custom_audio():
     if breath_part_lengths[0] == 0:
         stretched_inhale = AudioSegment.silent(duration=0)
     else:
-        stretched_inhale = speed_change(inhale,(inhale.duration_seconds/breath_part_lengths[0]))
+        stretched_inhale = speed_change(inhale,(inhale.duration_seconds/breath_part_lengths[0])).fade_in(200).fade_out(200)
     
     if breath_part_lengths[2] == 0:
         stretched_exhale = AudioSegment.silent(duration=0)
     else:
-        stretched_exhale = speed_change(exhale,(exhale.duration_seconds/breath_part_lengths[2]))
+        stretched_exhale = speed_change(exhale,(exhale.duration_seconds/breath_part_lengths[2])).fade_in(200).fade_out(200)
 
     stretched_inhale_pause = AudioSegment.silent(duration=(1000*breath_part_lengths[1]))
     stretched_exhale_pause = AudioSegment.silent(duration=(1000*breath_part_lengths[3]))
