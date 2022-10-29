@@ -1,6 +1,3 @@
-This is the back-end repo of the breathwork customizer app. This app generates custom audio to guide individuals through breathwork sessions. 
-
-
 # About
 
 This is the back-end repo of the breathwork customizer app. This app generates custom audio to guide individuals through breathwork sessions. The front-end is available at https://github.com/sophwag/fe-breathwork-customizer.
