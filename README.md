@@ -14,3 +14,4 @@ Future goals for this project:
 - Explore functionality to allow the transfer of longer audio files
 - Add functionality to allow floats for customized pattern (ex. 5.5 seconds inhale instead of 6 seconds)
 - Remove unused dependencies
+- Balance volume across sounds
